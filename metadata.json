@@ -1,0 +1,6 @@
+{
+  "name": "PAPER ROCK Wallpapers",
+  "description": "Customize your phone with premium rock-themed wallpapers, import local assets, or synthesize custom rock masterpieces with Gemini AI!",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

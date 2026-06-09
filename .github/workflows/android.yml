@@ -1,0 +1,41 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Setup JDK
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # 3. Setup Gradle with wrapper validation
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          validate-wrappers: true
+
+      # 4. Ensure gradlew has execute permission
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 5. Build Debug APK
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      # 6. Run Unit Tests
+      - name: Run Tests
+        run: ./gradlew test
